@@ -2,7 +2,7 @@
   <img src="assets/Automatisation%20industrielle%20HMI%20%26%20PLC_banner.png" width="100%">
 </p>
 
-<h1 align="center">Industrial Control — HMI & PLC</h1>
+<h1 align="center">Automated-Production-Line-PLC-HMI</h1>
 
 <p align="center">
   <b>Automated Mixing, Filling, Capping and Packaging Line</b>
