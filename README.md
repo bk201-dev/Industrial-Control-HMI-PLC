@@ -2,126 +2,75 @@
 
 ### Automated Mixing, Filling, Capping and Packaging Line
 
-Industrial automation project developed to simulate and supervise a complete bottle-production line.
+Industrial automation project developed to simulate and supervise a complete production line for liquid preparation, bottle filling, capping and packaging.
 
-The system handles:
-
-- preparation of a liquid mixture from three reservoirs,
-- transfer to the filling station,
-- automatic bottle positioning,
-- filling,
-- capping,
-- packaging,
-- carton evacuation.
-
-The control logic was developed with **RSLogix 500**, simulated with **RSLogix Emulate 500**, connected through **RSLinx**, and supervised using **RSView32**.
+The system was implemented using **RSLogix 500**, **RSLogix Emulate 500**, **RSLinx** and **RSView32**.
 
 ---
 
-## System Overview
+## Project Overview
+
+The automated line performs the complete production sequence:
 
 ```mermaid
 flowchart LR
-
-    A["Raw Liquid<br/>Reservoirs"]
+    A["Liquid Reservoirs"]
     B["Mixing Tank"]
-    C["Bottle Conveyor"]
-    D["Filling Station"]
-    E["Capping Station"]
+    C["Bottle Positioning"]
+    D["Filling"]
+    E["Capping"]
     F["Packaging"]
-    G["Output Area"]
+    G["Carton Output"]
 
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
+    A --> B --> C --> D --> E --> F --> G
 ```
 
+Three liquid sources are combined according to defined proportions before the mixture is transferred to the filling station.
+
+The bottles are then positioned, filled, capped and packaged before the cartons are evacuated to the output area.
+
 ---
 
-## Control Architecture
+## System Architecture
 
 ```mermaid
 flowchart LR
-
-    PLC["RSLogix 500<br/>PLC Logic"]
+    PLC["RSLogix 500<br/>PLC Program"]
     EMU["RSLogix Emulate 500<br/>Virtual PLC"]
     LINK["RSLinx<br/>Communication"]
     HMI["RSView32<br/>HMI"]
-    OP["Operator"]
+    USER["Operator"]
 
     PLC --> EMU
     EMU <--> LINK
     LINK <--> HMI
-    HMI <--> OP
+    HMI <--> USER
 ```
 
-The complete system can therefore be tested without requiring a physical PLC.
+The PLC logic is executed through **RSLogix Emulate 500**, allowing the complete control system to be tested without a physical PLC.
+
+**RSLinx** provides communication between the simulated controller and the **RSView32** supervision interface.
 
 ---
 
-## Process Control
-
-The PLC program manages:
-
-- START / STOP control,
-- main contactor `KM1`,
-- timers,
-- filling sequences,
-- bottle and carton movement,
-- pneumatic actuator timing,
-- mixing operations,
-- process reset and acknowledgement logic.
-
-<p align="center">
-  <img src="assets/plc/plc_ladder_sequence.png" width="850">
-</p>
-
----
-
-## HMI Supervision
-
-The RSView32 interface provides real-time visualization and operator interaction with the production line.
+## HMI
 
 <p align="center">
   <img src="assets/hmi/main_screen.png" width="850">
 </p>
 
-The HMI uses process tags and derived tags to control animations and represent equipment states.
-
-Examples include:
-
-- tank level visualization,
-- valve movement,
-- pneumatic cylinder movement,
-- mixing-pump rotation,
-- process-state indication.
+The HMI gives the operator a real-time view of the production line and provides access to the main process controls and operating states.
 
 ---
 
-## Derived Tags & Animation
+## Main Technologies
 
-<p align="center">
-  <img src="assets/hmi/derived_tags_logic.png" width="700">
-</p>
-
-Derived tags are used to generate calculated or logical variables from process tags.
-
-They simplify HMI behavior and allow animation states to follow the PLC sequence.
-
----
-
-## PLC Simulation
-
-<p align="center">
-  <img src="assets/plc/rslogix_emulate500_simulation.png" width="750">
-</p>
-
-**RSLogix Emulate 500** was used to validate the PLC program without physical automation hardware.
-
-RSLinx provides communication between the virtual PLC and RSView32.
+| Tool | Role |
+|---|---|
+| **RSLogix 500** | PLC programming |
+| **RSLogix Emulate 500** | Virtual PLC simulation |
+| **RSLinx** | PLC–HMI communication |
+| **RSView32** | HMI design and process supervision |
 
 ---
 
@@ -143,8 +92,8 @@ Industrial-Control-HMI-PLC/
 │   └── README.md
 │
 ├── assets/
-│   ├── plc/
-│   └── hmi/
+│   ├── hmi/
+│   └── plc/
 │
 ├── .gitignore
 ├── LICENSE
@@ -153,19 +102,8 @@ Industrial-Control-HMI-PLC/
 
 ---
 
-## Tools
-
-| Tool | Role |
-|---|---|
-| RSLogix 500 | PLC ladder programming |
-| RSLogix Emulate 500 | PLC simulation |
-| RSLinx | PLC–HMI communication |
-| RSView32 | HMI design and supervision |
-
----
-
 ## Project Goal
 
-The project demonstrates the coordination of PLC logic, industrial communication and HMI supervision in a complete automated production sequence.
+The project demonstrates the integration of **PLC control, industrial communication and HMI supervision** in a complete automated production system.
 
-It provides a practical implementation of industrial automation principles without requiring physical PLC hardware.
+It was designed to reproduce the behavior of an industrial production line while allowing the full control sequence to be simulated and validated without physical automation hardware.
