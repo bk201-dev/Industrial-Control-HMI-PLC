@@ -1,10 +1,12 @@
-# Industrial Control — HMI & PLC
+<p align="center">
+  <img src="assets/Automatisation%20industrielle%20HMI%20%26%20PLC_banner.png" width="100%">
+</p>
 
-### Automated Mixing, Filling, Capping and Packaging Line
+<h1 align="center">Industrial Control — HMI & PLC</h1>
 
-Industrial automation project developed to simulate and supervise a complete production line for liquid preparation, bottle filling, capping and packaging.
-
-The system was implemented using **RSLogix 500**, **RSLogix Emulate 500**, **RSLinx** and **RSView32**.
+<p align="center">
+  <b>Automated Mixing, Filling, Capping and Packaging Line</b>
+</p>
 
 ---
 
