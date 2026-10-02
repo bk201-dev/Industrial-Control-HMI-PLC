@@ -1,0 +1,22 @@
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Temporary / backup
+*.tmp
+*.bak
+*.log
+~*
+
+# RSLogix / Studio 5000 temporary files
+*.SEM
+*.WRK
+
+# RSView logs / generated data
+ACTLOG/
+ALMLOG/
+cache/
+
+# General generated files
+*.zip
+*.rar
